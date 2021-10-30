@@ -32,8 +32,11 @@ const App = {
   methods: {
     getNotes() {
       const localNotes = localStorage.getItem("notes");
-      if (!localNotes) return;
-      this.notes = JSON.parse(localNotes);
+      if (!localNotes || localNotes === "undefined") return;
+      this.notes = JSON.parse(localNotes).map((el) => {
+        el.isEditMode = false;
+        return el;
+      });
     },
     onSubmit() {
       this.notes.push({ title: this.input.value });
