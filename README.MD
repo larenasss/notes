@@ -1,0 +1,1 @@
+* посмотреть приложение можно по ссылке https://larenasss.github.io/notes-1/index.html
