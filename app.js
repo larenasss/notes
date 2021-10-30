@@ -36,7 +36,7 @@ const App = {
       this.notes = JSON.parse(localNotes);
     },
     onSubmit() {
-      this.notes.push({ title: this.input.value, isisEditMode: false });
+      this.notes.push({ title: this.input.value });
       this.input.value = "";
     },
     removeNote(index) {
