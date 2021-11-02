@@ -1,0 +1,86 @@
+$border-radius-size: 14px;
+
+.card {
+  max-width: 300px;
+  display: inline-block;
+  margin: auto;
+  border-radius: $border-radius-size + 5;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  box-shadow: -1px 15px 30px -12px rgba(50, 50, 50, 0.2);
+  background: #fff;
+  color: #333;
+  user-select: none;
+
+  &__wrapper-img{
+    position: relative;
+    height: 230px;
+    border-top-left-radius: $border-radius-size;
+    border-top-right-radius: $border-radius-size;
+    background: url('https://tocode.ru/static/uploads/courses/3/clash-of-clans-images/bg-sm.jpg');
+  }
+
+  &__body {
+    min-height: 260px;
+  }
+
+  &__name {
+    display: block;
+    margin-top: 24px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  &__title {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 26px;
+    color: black;
+    font-weight: 900;
+  }
+
+  &__body {
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+}
+
+.card-stats {
+  display: flex;
+  color: #fff;
+  background-color: #ec9b3b;
+  font-weight: 700;
+
+  .one-third {
+    width: 33%;
+    padding: 20px 15px;
+
+    &:not(:last-child) {
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  .stat-value {
+    position: relative;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .stat {
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 12px;
+  }
+
+  .no-border {
+    border-right: none;
+  }
+}
+
+.carousel__prev,
+.carousel__next {
+  background-color: #ec9b3b;
+}
