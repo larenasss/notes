@@ -1,20 +1,16 @@
 const App = {
   data() {
     return {
-      title: "Notes",
+      title: 'Notes',
       input: {
-        value: "",
-        placeholder: "Type or note",
+        value: '',
+        placeholder: 'Type or note',
       },
-      note: {
-        title: "",
-        isEditMode: false,
-        editInputValue: "",
-      },
+      editNoteItem: {},
       notes: [
-        { title: "task 1", isEditMode: false, editInputValue: "" },
-        { title: "task 2", isEditMode: false, editInputValue: "" },
-        { title: "task 3", isEditMode: false, editInputValue: "" },
+        { id: 1, title: 'task 1' },
+        { id: 2, title: 'task 2' },
+        { id: 3, title: 'task 3' },
       ],
     };
   },
@@ -24,36 +20,42 @@ const App = {
   watch: {
     notes: {
       handler(updatedList) {
-        localStorage.setItem("notes", JSON.stringify(updatedList));
+        this.setNotes(updatedList);
       },
       deep: true,
     },
   },
   methods: {
     getNotes() {
-      const localNotes = localStorage.getItem("notes");
-      if (!localNotes || localNotes === "undefined") return;
+      const localNotes = localStorage.getItem('notes');
+      if (!localNotes || localNotes === 'undefined') return;
       this.notes = JSON.parse(localNotes).map((el) => {
         el.isEditMode = false;
         return el;
       });
     },
+    setNotes(updatedList) {
+      if (!updatedList) return;
+      localStorage.setItem('notes', JSON.stringify(updatedList));
+    },
     onSubmit() {
-      this.notes.push({ title: this.input.value });
-      this.input.value = "";
+      const id = this.notes.length + 1;
+      this.notes.push({ id: `${id}`, title: this.input.value.trim() });
+      this.input.value = '';
     },
     removeNote(index) {
       this.notes.splice(index, 1);
     },
     editNote(note) {
-      note.isEditMode = true;
-      note.editInputValue = note.title;
+      this.editNoteItem = Object.assign({}, note);
     },
-    saveNote(note) {
-      note.isEditMode = false;
-      note.title = note.editInputValue;
+    saveNote(index) {
+      if (this.editNoteItem.title) {
+        this.notes[index] = this.editNoteItem;
+      }
+      this.editNoteItem = {};
     },
   },
 };
 
-Vue.createApp(App).mount("#app");
+Vue.createApp(App).mount('#app');
